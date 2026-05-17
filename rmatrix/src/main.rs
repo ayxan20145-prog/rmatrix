@@ -1,4 +1,7 @@
 use rand::Rng;
+use std::thread::sleep;
+use std::time::Duration;
+use std::io::{self, Write};
 
 fn main() {
     let mut rng = rand::rng();
@@ -21,5 +24,8 @@ fn main() {
         }
 
         print!("{} {}", rand_num, word);
+        io::stdout().flush().unwrap();
+
+        sleep(Duration::from_micros(200));
     }
 }
