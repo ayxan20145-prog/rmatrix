@@ -1,9 +1,25 @@
 use rand::Rng;
 
 fn main() {
-    loop {
-        let rand_num = rand::thread_rng().gen_range(0..=9);
+    let mut rng = rand::rng();
 
-        print!("{rand_num} ");
+    loop {
+        let rand_num = rng.random_range(0..10);
+
+        let mut word = String::new();
+
+        for _ in 0..1 {
+            let is_upper = rng.random_bool(0.5);
+
+            let letter = if is_upper {
+                rng.random_range(b'A'..=b'Z') as char
+            } else {
+                rng.random_range(b'a'..=b'z') as char
+            };
+
+            word.push(letter);
+        }
+
+        print!("{} {}", rand_num, word);
     }
 }
