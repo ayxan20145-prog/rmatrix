@@ -2,6 +2,7 @@ use rand::Rng;
 use std::thread::sleep;
 use std::time::Duration;
 use std::io::{self, Write};
+use colored::Colorize;
 
 fn main() {
     let mut rng = rand::rng();
@@ -12,6 +13,7 @@ fn main() {
         let mut word = String::new();
 
         for _ in 0..1 {
+
             let is_upper = rng.random_bool(0.5);
 
             let letter = if is_upper {
@@ -23,9 +25,11 @@ fn main() {
             word.push(letter);
         }
 
-        print!("{} {}", rand_num, word);
-        io::stdout().flush().unwrap();
+        let rand_num = rand_num.to_string(); 
 
+        print!("{} {}", rand_num.green(), word.green());
+        io::stdout().flush().unwrap();
+        
         sleep(Duration::from_micros(200));
     }
 }
